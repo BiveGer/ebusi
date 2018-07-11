@@ -45,7 +45,7 @@ include("datenbank.php");
 
   <a style="display:block" href="produkt.php?id=7">
   <div class="gradient">
-<img src="../img/mixery.jpg" width = "100" length ="100"/>
+<img src="../img/Rothaus.jpg" width = "100" length ="100"/>
     <p> Mixery Guarana </p>
   </div>
 </a>
