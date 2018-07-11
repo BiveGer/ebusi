@@ -22,7 +22,10 @@ $Name = $_POST['Name'];
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
-  $Anschrift = $_POST['Anschrift'];
+    $Straße = $_PPOST['Straße'];
+    $Ort = $_PPOST['Ort'];
+    $PLZ = $_PPOST['PLZ'];
+    $Hausnummer = $_PPOST['Hausnummer'];
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
@@ -64,7 +67,7 @@ $Name = $_POST['Name'];
     //Keine Fehler, wir können den Nutzer registrieren
     if(!$error) {
 
-        $statement = $pdo->prepare("INSERT INTO `kunden`(`Benutzername`, `Vorname`, `Name`, `Email`, `Passwort`, `Anschrift`) VALUES (:Benutzername, :Vorname, :Name, :email, :passwort, :Anschrift)");
+        $statement = $pdo->prepare("INSERT INTO `kunden`(`Benutzername`, `Vorname`, `Name`, `Email`, `Passwort`, `Straße`, `Hausnummer`, `Ort`, `PLZ`,) VALUES (:Benutzername, :Vorname, :Name, :email, :passwort, :Straße, :Hausnummer, :Ort, :PLZ)");
         $result = $statement->execute(array('email' => $email, 'passwort' => $passwort, 'Benutzername' => $Benutzername,'Vorname' => $Vorname,'Name' => $Name,'Anschrift' => $Anschrift));
 
         if($result) {
@@ -94,8 +97,18 @@ if($showFormular) {
   Nachname:<br>
   <input type="text" size="40" maxlength="250" name="Name"><br><br>
 
-  Anschrift:<br>
-  <input type="text" size="40" maxlength="250" name="Anschrift"><br><br>
+  Ort:<br>
+  <input type="text" size="40" maxlength="250" name="Ort"><br><br>
+
+  PLZ:<br>
+  <input type="text" size="40" maxlength="250" name="PLZ"><br><br>
+
+  Straße:<br>
+  <input type="text" size="40" maxlength="250" name="Straße"><br><br>
+
+  Hausnummer:<br>
+  <input type="text" size="40" maxlength="250" name="Hausnummer"><br><br>
+
 
 E-Mail:<br>
 <input type="email" size="40" maxlength="250" name="email"><br><br>
