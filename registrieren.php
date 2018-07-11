@@ -19,13 +19,13 @@ if(isset($_GET['register'])) {
 $Benutzername = $_POST['Benutzername'];
 $Vorname = $_POST['Vorname'];
 $Name = $_POST['Name'];
+    $Strasse = $_POST['Strasse'];
+    $Hausnummer = $_POST['Hausnummer'];
+    $Ort = $_POST['Ort'];
+    $PLZ = $_POST['PLZ'];
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
-    $Straße = $_PPOST['Straße'];
-    $Ort = $_PPOST['Ort'];
-    $PLZ = $_PPOST['PLZ'];
-    $Hausnummer = $_PPOST['Hausnummer'];
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
@@ -67,8 +67,8 @@ $Name = $_POST['Name'];
     //Keine Fehler, wir können den Nutzer registrieren
     if(!$error) {
 
-        $statement = $pdo->prepare("INSERT INTO `kunden`(`Benutzername`, `Vorname`, `Name`, `Email`, `Passwort`, `Straße`, `Hausnummer`, `Ort`, `PLZ`,) VALUES (:Benutzername, :Vorname, :Name, :email, :passwort, :Straße, :Hausnummer, :Ort, :PLZ)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort, 'Benutzername' => $Benutzername,'Vorname' => $Vorname,'Name' => $Name,'Anschrift' => $Anschrift));
+        $statement = $pdo->prepare("INSERT INTO `kunden`(`Benutzername`, `Vorname`, `Name`, `Email`, `Passwort`, `Strasse`, `Hausnummer`, `Ort`, `PLZ`) VALUES (:Benutzername, :Vorname, :Name, :email, :passwort, :Strasse, :Hausnummer, :Ort, :PLZ)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort, 'Benutzername' => $Benutzername,'Vorname' => $Vorname,'Name' => $Name,'Strasse' => $Strasse,'Hausnummer'=>$Hausnummer,'Ort'=>$Ort,'PLZ'=>$PLZ));
 
         if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
@@ -97,17 +97,17 @@ if($showFormular) {
   Nachname:<br>
   <input type="text" size="40" maxlength="250" name="Name"><br><br>
 
+    Straße:<br>
+  <input type="text" size="40" maxlength="250" name="Strasse"><br><br>
+
+  Hausnummer:<br>
+  <input type="text" size="40" maxlength="250" name="Hausnummer"><br><br>
+
   Ort:<br>
   <input type="text" size="40" maxlength="250" name="Ort"><br><br>
 
   PLZ:<br>
   <input type="text" size="40" maxlength="250" name="PLZ"><br><br>
-
-  Straße:<br>
-  <input type="text" size="40" maxlength="250" name="Straße"><br><br>
-
-  Hausnummer:<br>
-  <input type="text" size="40" maxlength="250" name="Hausnummer"><br><br>
 
 
 E-Mail:<br>
